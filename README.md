@@ -23,7 +23,7 @@ Unlike Logistic Regression, SVM does not just try to optimize a cost function bu
 
 An additional explanation for the better performance of SVM is the model’s robustness to dimensionality. This robustness is due to two inherent properties of SVM:
 We only find a hyperplane, or equivalently, the normal vector. So the number of parameters is simply $d$ if the data points lie in $\mathbb{R}_d$.
-One can show that the weight vector $w$ must lie in the span of the support vectors, and hence the classifier operates only on a much reduced subspace compared to Rd. That is, feature selection is inherently done by SVM.
+One can show that the weight vector $w$ must lie in the span of the support vectors, and hence the classifier operates only on a much reduced subspace compared to $\mathbb{R}_d$. That is, feature selection is inherently done by SVM.
 ### 2.2 CNN Models
 By stacking multiple convolutional, pooling, and fully connected layers, CNNs can learn hierarchical representations of the input data. This hierarchical representation allows the model to capture both low-level features (e.g., edges, corners) and high-level features (e.g., objects, patterns) in the data. We tested 4 CNN models to determine the best structure for the given task. Due to limited computation resources, we trained each model for 20 epochs.
 #### 2.2.1 Model 1: Global-average-pooling Model
