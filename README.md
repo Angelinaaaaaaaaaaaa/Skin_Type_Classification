@@ -29,44 +29,55 @@ By stacking multiple convolutional, pooling, and fully connected layers, CNNs ca
 #### 2.2.1 Model 1: Global-average-pooling Model
 Model 1 consists of 4 CNN units. Each CNN unit includes a Convolution layer, followed by batched normalization and max-pooling. The 4 Convolution layers each have a RELU activation function and 3x3 kernels, and they respectively have filters of dimensions 32, 64, 128, and 256. After the convolutional layers follow a GlobalAveragePooling2D layer, two dense layers with 128 and 64 units, and a dropout regularization, in that order. The output layer divides the final categorization into three classes using a softmax activation function.
 
+![3c251496b5348e251dbd9cfd2c25536](https://github.com/user-attachments/assets/8351a581-3d48-486e-b8cf-f279b888630c)
+
 Figure 1. Layer Dimensions of Model 1 
 #### 2.2.2 Model 2: Flatten Model
 This model has everything Model 1 has but uses a flattening layer in place of the GlobalAveragePooling2D layer between the CNN layers and the dense layers. 
 
+![image](https://github.com/user-attachments/assets/a8e71ada-1644-432f-80f9-c0338015f01e)
 
 Figure 2. Layer Dimensions of Model 2 
 #### 2.2.3 Model 3: Resnet Structure Model
 Residual blocks with 64, 128, and 256 filters are corporated in this model. It begins with a Conv2D layer with 64 filters and a 7x7 kernel, followed by a max-pooling layer. Two Conv2D layers with ReLU activation and an identity shortcut link make up each residual block. A flattened layer, two dense layers with 128 and 64 units, and an output layer with a softmax activation function complete the network.
+![image](https://github.com/user-attachments/assets/45b3fe65-07e7-4862-a24c-5fb7fd4acf8d)
 
 Figure 3. Layer Dimensions of Model 3
 #### 2.2.4 Model 4: Inception Structured Model
 Inception modules are designed to capture multi-scale features by using parallel convolutional layers with different filter sizes. Each inception module consists of multiple branches, where each branch performs a different type of convolution operation (e.g., 1x1, 3x3, 5x5). These branches are then concatenated to form the output of the inception module. It then flattens all layers and connects to a fully connected neural network.
 Combining different filter sizes and allowing the network to learn which features to use inception modules enable the model to capture both local and global information in the input data. This helps improve the model's ability to recognize complex patterns and objects.
+![image](https://github.com/user-attachments/assets/00195bce-5699-4cea-8c04-c1c89dcd4d7a)
 
 Figure 4. Inception Modules
 
 Our implementation of an inception module consists of 4 branches (1x1, 3x3, 5x5, and maxPooling) which are concatenated in the same manner as in the figure.
 The specification of the layers in the model can be seen in this chart:
- 
+ ![image](https://github.com/user-attachments/assets/b2f629a2-2706-4cd2-af50-c1470d659d06)
+
 Figure 5. Layer Specification for Model 4 
 Note: All activation functions are “relu”.
 We then proceed to train the model using “adam” as an optimizer with respect to “categorical_crossentropy”.
 
+![image](https://github.com/user-attachments/assets/05e6951c-c4b7-42f6-95a5-511317a08881)
 
 Figure 6. Layer Dimensions of Model 4 
 
 ## 3 Results
 ### 3.1 Training for each Model
 Model 1:
+![image](https://github.com/user-attachments/assets/c0668e69-1bbf-48c3-b797-de91e9382c94)
 
 Figure 7. Training Loss and Accuracy for Model 1
 Model 2:
+![image](https://github.com/user-attachments/assets/9e4ecd45-a9dd-45da-96fd-d30bc8d9f7ee)
 
 Figure 8. Training Loss and Accuracy for Model 2
 Model 3:
+![image](https://github.com/user-attachments/assets/e30f0d7e-e361-43c8-bd7e-ed7ab2b3efbd)
 
 Figure 9. Training Loss and Accuracy for Model 3
 Model 4:
+![image](https://github.com/user-attachments/assets/1dbf6d34-6523-47a2-a65e-09ed7f09a36d)
 
 Figure 10. Training Loss and Accuracy for Model 4
 ### 3.2 Testing for each model
@@ -117,10 +128,10 @@ See Github for codes. Baseline models are stored in `baseline.ipynb`, and CNN mo
 
 ## 8 Statement of Collaboration
 Name: Chengkai Yao,	 Title: Leader, Project Manager, Coder, Writer,  
-Contribution: Lead and assign members with tasks; design the framework of this project; coded part of preprocessing (implemented pca), all of Baseline model and CNN model; contributed on the report’s structure, details, and insights(Discussion).
+Contribution: Lead and assign members with tasks; design the framework of this project; coded part of preprocessing, all of Baseline model and CNN model; contributed on the report’s structure, details, and insights(Discussion).
 
 Name: Angelina Zhang
-Contributed to coding to preprocess data, and writing reports for baseline models and CNN models with Grace. Participated in discussions and managed the GitHub repository.
+Contributed to coding to preprocess data, and writing reports for baseline models and CNN models with Grace. Participated in discussions, managed the GitHub repository, and finalized the reports.
 
 Name: Grace(Yunjin) Zhu
 Some code in baseline models, writing final report for baseline models and CNN models with Angelina
