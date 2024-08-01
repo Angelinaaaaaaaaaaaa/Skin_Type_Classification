@@ -117,7 +117,7 @@ See Github for codes. Baseline models are stored in `baseline.ipynb`, and CNN mo
 
 ## 8 Statement of Collaboration
 Name: Chengkai Yao,	 Title: Leader, Project Manager, Coder, Writer,  
-Contribution: Lead and assign members with tasks; design the framework of this project; coded part of preprocessing, all of Baseline model and CNN model; contributed on the report’s structure, details, and insights(Discussion).
+Contribution: Lead and assign members with tasks; design the framework of this project; coded part of preprocessing (implemented pca), all of Baseline model and CNN model; contributed on the report’s structure, details, and insights(Discussion).
 
 Name: Angelina Zhang
 Contributed to coding to preprocess data, and writing reports for baseline models and CNN models with Grace. Participated in discussions and managed the GitHub repository.
