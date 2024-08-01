@@ -15,9 +15,11 @@ In our datasets, due to their size, the original images have very high dimension
 We used two models as our baseline model: the logistic regression model and the SVM model. 
 #### 2.1.1 Logistic Regression Model
 We aim to classify skin type into three classes, while logistic regression is designed for binary classification, so we used softmax to enable multi-class classification. We performed feature scaling using standardization to ensure accuracy and reliability. By creating and training this model with a 'newton-cg' solver, we decreased the risk of overfitting. 
+
 However, the Logistic Regression model only achieved an accuracy of 28.35%. Even after applying PCA for dimensionality reduction, Logistic Regression still faced challenges, because PCA does not always make the data linearly separable. Also, logistic regression models ignore the spatial correlation of the values of the pixels, which undermines its effectiveness for image data. 
 #### 2.1.2 SVM Model
 Unlike Logistic Regression, SVM does not just try to optimize a cost function but rather focuses on maximizing the margin, thus providing a buffer zone for better handling uncertainty in the test data. By using the RBF kernel and the "one-vs-rest" strategy, SVM maps the input data to a higher-dimensional space where classes can be separated more effectively. This approach helps SVM better manage the non-linear relationships within the data. As a result, SVM performs better than Logistic Regression, achieving a moderate accuracy of 42.54%. 
+
 An additional explanation for the better performance of SVM is the model’s robustness to dimensionality. This robustness is due to two inherent properties of SVM:
 We only find a hyperplane, or equivalently, the normal vector. So the number of parameters is simply d if the data points lie in $Rd$.
 One can show that the weight vector w must lie in the span of the support vectors, and hence the classifier operates only on a much reduced subspace compared to Rd. That is, feature selection is inherently done by SVM.
@@ -28,7 +30,7 @@ Model 1 consists of 4 CNN units. Each CNN unit includes a Convolution layer, fol
 
 Figure 1. Layer Dimensions of Model 1 
 #### 2.2.2 Model 2: Flatten Model
-This model has everything Model 1 has, but uses a flattening layer in place of the GlobalAveragePooling2D layer between the CNN layers and the dense layers. 
+This model has everything Model 1 has but uses a flattening layer in place of the GlobalAveragePooling2D layer between the CNN layers and the dense layers. 
 
 
 Figure 2. Layer Dimensions of Model 2 
@@ -38,7 +40,7 @@ Residual blocks with 64, 128, and 256 filters are corporated in this model. It b
 Figure 3. Layer Dimensions of Model 3
 #### 2.2.4 Model 4: Inception Structured Model
 Inception modules are designed to capture multi-scale features by using parallel convolutional layers with different filter sizes. Each inception module consists of multiple branches, where each branch performs a different type of convolution operation (e.g., 1x1, 3x3, 5x5). These branches are then concatenated to form the output of the inception module. It then flattens all layers and connects to a fully connected neural network.
-By combining different filter sizes and allowing the network to learn which features to use inception modules enable the model to capture both local and global information in the input data. This helps improve the model's ability to recognize complex patterns and objects.
+Combining different filter sizes and allowing the network to learn which features to use inception modules enable the model to capture both local and global information in the input data. This helps improve the model's ability to recognize complex patterns and objects.
 
 Figure 4. Inception Modules
 
@@ -68,18 +70,19 @@ Model 4:
 Figure 10. Training Loss and Accuracy for Model 4
 ### 3.2 Testing for each model
 Each model was trained for 20 epochs and evaluated on the test set. The following results were obtained:
-Model 1:
-Test Loss: 1.3759
-Test Accuracy: 0.3616
-Model 2:
-Test Loss: 3.2122
-Test Accuracy: 0.6401
-Model 3:
-Test Loss: 1.0753
-Test Accuracy: 0.4031
-Model 4:
-Test Loss: 3.0333
-Test Accuracy: 0.6851
+ Model 1:
+ Test Loss: 1.3759
+ Test Accuracy: 0.3616
+ Model 2:
+ Test Loss: 3.2122
+ Test Accuracy: 0.6401
+ Model 3:
+ Test Loss: 1.0753
+ Test Accuracy: 0.4031
+ Model 4:
+ Test Loss: 3.0333
+ Test Accuracy: 0.6851
+ 
 From the above result, we can see that Model 2 and Model 4 performed the best. Indeed, reaching 60% is way better than the baseline model.
 ## 4 Discussion
 4.1 Baseline Model Analysis
@@ -91,13 +94,20 @@ For the third model, we implemented a resnet-like structure since the Resnet mod
 For our fourth and final model, we implemented an inception-like structure. Inception modules are designed to capture multi-scale features by using parallel convolutional layers with different filter sizes. Each inception module consists of multiple branches, where each branch performs a different type of convolution operation (e.g., 1x1, 3x3, 5x5). These branches are then concatenated to form the output of the inception module. By combining different filter sizes and allowing the network to learn which features to use in inception modules enable the model to capture both local and global information in the input data. The difference in kernel size is what we believe to be particularly helpful for our dataset: as we preprocessed our data, we discovered that the facial areas for different images vary in size. For smaller faces, a small kernel will satisfy, while for larger faces, a larger kernel size is required for the CNN model to capture all necessary information. The unique design of the inception model accommodates this problem effectively, leading to much better performance.
 ## 5 Conclusion
 Looking back at the Skin Type Classification Project, we can see a lot of knowledge acquired and challenges faced that helped us better understand image classification tasks. The decision we made during our data preprocessing to crop the faces and fill the images with gray while still retaining their dimensions was very important in that it helped the models concentrate on the necessary features, though some information about what was around them contextually might have increased performance. PCA was good for simplifying the dataset, but its limited ability to guarantee linear separability only served to show how much more need there was for advanced dimensionality reduction techniques. Logistic Regression and SVM models provided a baseline for evaluation. The different CNN architectures we implemented clearly showed that the convolution structure is better suited for image classification tasks. The inception-structure model proved to be the most accurate, demonstrating the importance of multi-scale feature extraction. The most important takeaway from this report is to choose the right model for the dataset you have. As seen, this creates a substantial difference. 
+
+
 Future directions would involve much hyperparameter tuning, more advanced regularization techniques, leveraging transfer learning, increasing dataset diversity through data augmentation, and exploring some advanced architectures like ResNet or EfficientNet. Lessons have been very useful in showing just how important data preprocessing is, what the limitations of linear models are, and what deep learning techniques can do. Our results are promising; however, continuous improvement and exploration to enhance accuracy and robustness would contribute towards making strides in personalized skincare and dermatological care, but from the perspective of improving overall skin health for a wider audience.
 ## 6 Citations
 Dissanayake, S. (2024, February 20). Oily, dry and normal skin types dataset. Kaggle. https://www.kaggle.com/datasets/shakyadissanayake/oily-dry-and-normal-skin-types-dataset/data 
+
 Fernandes, A. A., Figueiredo Filho, D. B., Rocha, E. C., & Nascimento, W. da. (2020). Read this paper if you want to learn logistic regression. Revista de Sociologia e Política, 28(74). https://doi.org/10.1590/1678-987320287406en 
+
 Hearst, M. A., Dumais, S. T., Osuna, E., Platt, J., & Scholkopf, B. (1998). Support Vector Machines. IEEE Intelligent Systems and Their Applications, 13(4), 18–28. https://doi.org/10.1109/5254.708428 
+
 Mishra, S., Sarkar, U., Taraphder, S., Datta, S., Swain, D., Saikhom, R., Panda, S., & Laishram, M. (2017). Principal component analysis. International Journal of Livestock Research, 1. https://doi.org/10.5455/ijlr.20170415115235 
+
 O’Shea, K., & Nash, R. (2015). An Introduction to Convolutional Neural Networks. https://doi.org/ https://doi.org/10.48550/arXiv.1511.08458 
+
 Saiwaeo, S., Arwatchananukul, S., Mungmai, L., Preedalikit, W., & Aunsri, N. (2023). Human skin type classification using image processing and deep learning approaches. Heliyon, 9(11). https://doi.org/10.1016/j.heliyon.2023.e21176 
 
 ## 7 Appendix
