@@ -70,19 +70,19 @@ Model 4:
 Figure 10. Training Loss and Accuracy for Model 4
 ### 3.2 Testing for each model
 Each model was trained for 20 epochs and evaluated on the test set. The following results were obtained:
- Model 1:
- Test Loss: 1.3759
- Test Accuracy: 0.3616
- Model 2:
- Test Loss: 3.2122
- Test Accuracy: 0.6401
- Model 3:
- Test Loss: 1.0753
- Test Accuracy: 0.4031
- Model 4:
- Test Loss: 3.0333
- Test Accuracy: 0.6851
- 
+- **Model 1**:
+  - Test Loss: 1.3759
+  - Test Accuracy: 0.3616
+- **Model 2**:
+  - Test Loss: 3.2122
+  - Test Accuracy: 0.6401
+- **Model 3**:
+  - Test Loss: 1.0753
+  - Test Accuracy: 0.4031
+- **Model 4**:
+  - Test Loss: 3.0333
+  - Test Accuracy: 0.6851
+
 From the above result, we can see that Model 2 and Model 4 performed the best. Indeed, reaching 60% is way better than the baseline model.
 ## 4 Discussion
 4.1 Baseline Model Analysis
